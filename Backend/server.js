@@ -8,8 +8,13 @@ const app=express();
 app.use(morgan('dev'))
 //middleware
 app.use(express.json())
-//routes    
+
+//routes     
 app.use('/api/workouts',workoutRoutes) 
+
+app.get('/favicon.ico',(req,res)=>{
+    console.log("bas karo")
+})
 
 mongoose.connect(process.env.MONGO_URI)
     .then(()=>{

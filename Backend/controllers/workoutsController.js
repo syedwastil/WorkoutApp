@@ -24,6 +24,15 @@ const getWorkout=async(req,res)=>{
 //Get request for creating a workout
 const createWorkout=async (req,res)=>{
     const{title,load,reps}=req.body;
+    if(!title){
+        return res.status(400).json({error:"Title is required"})
+    }
+    if(!load){
+        return res.status(400).json({error:"Load is required"})
+    }
+    if(!reps){
+        return res.status(400).json({error:"Reps is required"})
+    }
     try{
         const workout=await Workout.create({title,load,reps});
         res.json(workout)
