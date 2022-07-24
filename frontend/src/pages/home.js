@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios'
 //import components and hooks
 import WorkoutDetails from "../components/WorkoutDetails";
@@ -7,15 +7,12 @@ import Workoutform from "../components/Workoutform";
 import UseWorkoutContext from "../Hooks/UseWorkoutContext"
 
 function Home() {
-
+  const [workouts, setworkouts] = useState(null);
   //const [isLoading, setIsLoading] = useState(false);
   useEffect(()=>async () => {
-    const {workouts,dispatch}=UseWorkoutContext();
-      const response = await axios.get('/api/workouts')
-        .then(()=>{
-            dispatch({type:'SET_WORKOUTS',payload:response.data})
-        })
-      
+      const response = await axios.get('/api/workouts');
+      //console.log(response.data)
+        setworkouts(response.data);
 
   },[]);
   return (

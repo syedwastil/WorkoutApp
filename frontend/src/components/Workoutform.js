@@ -9,7 +9,7 @@ function Workoutform() {
     const [error, seterror] = useState('');
 
     const handleSubmit=async (e)=>{
-        e.preventDefault();
+        //e.preventDefault();
         const workout = {title, load, reps}
         console.log(workout)
         await axios.post('/api/workouts/',workout)
@@ -35,13 +35,13 @@ function Workoutform() {
 
         <label>load (kg): </label>
         <input 
-        type="text"
+        type="number"
         value={load}
         onChange={(e)=>setload(e.target.value)} />
 
         <label>reps: </label>
         <input 
-        type="text"
+        type="number"
         value={reps}
         onChange={(e)=>setreps(e.target.value)} />    
         <button>Add Workout</button>    
